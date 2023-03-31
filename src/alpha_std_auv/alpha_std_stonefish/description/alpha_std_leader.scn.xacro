@@ -155,7 +155,7 @@
             <sensor name="imu_sf" type="imu" rate="20.0">
                 <link name="Base"/>
                 <origin rpy="3.1415926 0.0 0.0" xyz="-0.65 0.0 -0.05"/>
-                <noise angle="0.01 0.01 0.05" angular_velocity="0.05" yaw_drift="0.001" linear_acceleration="0.1"/>
+                <noise angle="0.0 0.0 0.0" angular_velocity="0.0" yaw_drift="0.0" linear_acceleration="0.0"/>
                 <ros_publisher topic="/${robot_name}/imu/stonefish/data"/>
             </sensor>
 
@@ -166,24 +166,25 @@
                 <ros_publisher topic="/${robot_name}/gps/fix"/>
             </sensor>
 
-            <!--
-            <comm name="Modem" device_id="3" type="acoustic_modem">
-                <link name="Base"/>
-                <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+            <comm name="usbl" device_id="1" type="usbl">
                 <specs min_vertical_fov="0.0" max_vertical_fov="360.0" range="1000.0"/>
-                <connect device_id="1" occlusion_test="false"/>
-            </comm>
-            -->
-
-            <comm name="USBL" device_id="1" type="usbl">
-                <link name="Base"/>
+                <connect device_id="3" occlusion_test="false"/>
                 <autoping rate="1.0"/>
-                <origin rpy="0.0 0 0.0" xyz="0.0 0.0 0.0"/>
-                <specs min_vertical_fov="0.0" max_vertical_fov="360.0" range="1000.0"/>
-                <connect device_id="2" occlusion_test="false"/>
+                <noise range="0.1" horizontal_angle="0.0" vertical_angle="0.0"/>
+                <resolution range="0.1" angle="0.1"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <link name="Base"/>
                 <ros_publisher topic="/${robot_name}/usbl"/>
             </comm>
-            
+
+            <!-- <comm name="Modem" device_id="3" type="acoustic_modem">
+                <specs min_vertical_fov="0.0" max_vertical_fov="360.0" range="1000.0"/>
+                <connect device_id="4" occlusion_test="true"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <link name="Base"/>
+            </comm> -->
+
+
             <world_transform rpy="${rpy}" xyz="${xyz}"/>
 
         </robot>
