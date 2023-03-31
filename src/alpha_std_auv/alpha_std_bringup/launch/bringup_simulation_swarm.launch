@@ -19,6 +19,7 @@
         <arg name="scenario" value="$(arg scenario)"/>
     </include>
 
+
     <group>
         <include file="$(find alpha_std_bringup)/launch/include/control.launch.xml">
             <arg name="robot_name" value="leader"/>
@@ -48,6 +49,7 @@
             <arg name="is_sim" value="true"/>
         </include>
     </group>
+
 
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find alpha_std_description)/rviz/config.rviz"/>
 

@@ -16,21 +16,19 @@
 
 */
 
-
+#include <ros/ros.h>
 #include "usbl_node.hpp"
 #include "geometry_msgs/PolygonStamped.h"
 #include "geometry_msgs/Pose.h"
+#include "nav_msgs/Odometry.h"
+#include <message_filters/subscriber.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
 
 USBLNode::USBLNode()
 {
 
-    m_nh.reset(new ros::NodeHandle(""));
-    m_pnh.reset(new ros::NodeHandle("~"));
-
-    m_pnh->param<std::string>("frame_id", m_frame_id, "world");
-
-    m_usbl_subscriber = m_nh->subscribe(
-        "usbl", 10, &USBLNode::f_usbl_callback, this);
+    ros::NodeHandle nh;
 
     m_waypoint_publisher = m_nh->advertise
         <geometry_msgs::PolygonStamped>("update_waypoints", 10);
