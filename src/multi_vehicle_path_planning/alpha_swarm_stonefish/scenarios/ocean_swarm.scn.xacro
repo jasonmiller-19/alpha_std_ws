@@ -1,19 +1,18 @@
 <?xml version="1.0"?>
 <!--
     This file is part of ALPHA AUV project.
+
     Author: Emir Cem Gezer
     Email: emircem@uri.edu;emircem.gezer@gmail.com
     Year: 2022
+
     Copyright (C) 2022 Smart Ocean Systems Laboratory
 -->
 <scenario xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find alpha_std_stonefish)/description/alpha_std.scn.xacro"/>
-
-    <xacro:alpha_std robot_name="bill" xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-    <xacro:alpha_std robot_name="lin" xyz="5.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-    <xacro:alpha_std robot_name="emir" xyz="5.0 5.0 0.0" rpy="0.0 0.0 0.0"/>
-    <xacro:alpha_std robot_name="mingxi" xyz="0.0 5.0 0.0" rpy="0.0 0.0 0.0"/>
+    <xacro:include filename="$(find alpha_swarm_stonefish)/description/alpha_swarm.scn.xacro"/>
+    <xacro:alpha_leader robot_name="leader" xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <xacro:alpha_follower robot_name="follower" xyz="-20.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 
     <environment>
         <ned latitude="41" longitude="71"/>

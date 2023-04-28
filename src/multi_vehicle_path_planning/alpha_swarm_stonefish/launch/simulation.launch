@@ -14,11 +14,11 @@
 
     <param name="use_sim_time" type="boolean" value="true"/>
 
-    <arg name="scenario" default="ocean"/>
+    <arg name="scenario" default="ocean_swarm"/>
 
     <arg name="robot_name" default="changeme"/>
 
-    <arg name="data_path" default="$(find alpha_std_stonefish)/data"/>
+    <arg name="data_path" default="$(find alpha_swarm_stonefish)/data"/>
     <arg name="simulation_rate" default="100.0"/>
     <arg name="graphics_resolution_width" default="1200"/>
     <arg name="graphics_resolution_height" default="800"/>
@@ -36,7 +36,7 @@
         output="screen">
         <param
             name="scenario_description"
-            command="$(find xacro)/xacro robot_name:=$(arg robot_name) '$(find alpha_std_stonefish)/scenarios/$(arg scenario).scn.xacro'"/>
+            command="$(find xacro)/xacro robot_name:=$(arg robot_name) '$(find alpha_swarm_stonefish)/scenarios/$(arg scenario).scn.xacro'"/>
 
     </node>
 

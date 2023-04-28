@@ -18,7 +18,7 @@
 -->
 <launch>
 
-    <arg name="robot_name" default="alpha_std"/>
+    <arg name="robot_name" default="alpha_swarm"/>
     <arg name="is_sim" default="false"/>
 
     <node ns="$(arg robot_name)" name="$(arg robot_name)_navsat_transform" pkg="robot_localization" type="navsat_transform_node" output="screen">

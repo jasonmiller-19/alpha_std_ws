@@ -10,7 +10,7 @@
 -->
 <launch>
 
-    <arg name="robot_name" default="alpha_std"/>
+    <arg name="robot_name" default="alpha_swarm"/>
     <!-- set param for mvp_control -->
     <node ns="$(arg robot_name)" pkg="mvp_control" type="mvp_control_ros_node" name="alpha_control" output="screen">
         <rosparam command="load" file="$(find alpha_std_config)/config/control.yaml"/>

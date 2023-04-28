@@ -8,8 +8,8 @@
 -->
 <scenario xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find alpha_std_stonefish)/description/looks.scn.xacro"/>
-    <xacro:include filename="$(find alpha_std_stonefish)/description/materials.scn.xacro"/>
+    <xacro:include filename="$(find alpha_swarm_stonefish)/description/looks.scn.xacro"/>
+    <xacro:include filename="$(find alpha_swarm_stonefish)/description/materials.scn.xacro"/>
 
     <xacro:macro name="alpha_leader" params="xyz rpy robot_name">
         <robot name="${robot_name}" fixed="false" self_collisions="false">
@@ -153,7 +153,7 @@
             <sensor name="imu_sf" type="imu" rate="20.0">
                 <link name="Base"/>
                 <origin rpy="3.1415926 0.0 0.0" xyz="-0.65 0.0 -0.05"/>
-                <noise angle="0.01 0.01 0.05" angular_velocity="0.05" yaw_drift="0.001" linear_acceleration="0.1"/>
+                <noise angle="0.0 0.0 0.0" angular_velocity="0.0" yaw_drift="0.00" linear_acceleration="0.0"/>
                 <ros_publisher topic="/${robot_name}/imu/stonefish/data"/>
             </sensor>
 
@@ -163,14 +163,6 @@
                 <noise ned_position="0.1"/>
                 <ros_publisher topic="/${robot_name}/gps/fix"/>
             </sensor>
-
-            <comm name="Modem" device_id="1" type="acoustic_modem">
-                <specs min_vertical_fov="0.0" max_vertical_fov="360.0" range="1000.0"/>
-                <connect device_id="3" occlusion_test="false"/>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <link name="Base"/>
-                <ros_publisher topic="/${robot_name}/modem"/>
-            </comm>
 
             <comm name="Modem" device_id="1" type="acoustic_modem">
                 <specs min_vertical_fov="0.0" max_vertical_fov="360.0" range="1000.0"/>
@@ -339,12 +331,12 @@
             </sensor>
 
             <comm name="usbl" device_id="3" type="usbl">
-                <specs min_vertical_fov="0.0" max_vertical_fov="180.0" range="1000.0"/>
+                <specs min_vertical_fov="0.0" max_vertical_fov="360.0" range="1000.0"/>
                 <connect device_id="1" occlusion_test="false"/>
                 <autoping rate="1.0"/>
-                <noise range="0.1" horizontal_angle="0.1" vertical_angle="0.1"/>
+                <!-- <noise range="0.1" horizontal_angle="0.1" vertical_angle="0.1"/> -->
                 <resolution range="0.1" angle="0.1"/>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 1.571 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="3.1415926 0.0 0.0"/>
                 <link name="Base"/>
                 <ros_publisher topic="/${robot_name}/usbl"/>
             </comm>

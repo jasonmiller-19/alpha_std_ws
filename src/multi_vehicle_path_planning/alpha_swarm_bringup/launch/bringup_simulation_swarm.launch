@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+    This file is part of ALPHA AUV project.
+    Author: Emir Cem Gezer
+    Email: emircem@uri.edu;emircem.gezer@gmail.com
+    Year: 2022
+    Copyright (C) 2022 Smart Ocean Systems Laboratory
+-->
+<launch>
+
+    <!--
+        List of the simulated worlds in the 'alpha_stonefish'
+    -->
+    <arg name="robot_name" default=""/>
+    <arg name="scenario" default="ocean_swarm"/>
+    
+    <include file="$(find alpha_swarm_stonefish)/launch/simulation.launch">
+        <arg name="robot_name" value="$(arg robot_name)"/>
+        <arg name="scenario" value="$(arg scenario)"/>
+    </include>
+
+
+    <group>
+        <include file="$(find alpha_swarm_bringup)/launch/include/control.launch.xml">
+            <arg name="robot_name" value="leader"/>
+        </include>
+
+        <include file="$(find alpha_swarm_bringup)/launch/include/description.launch.xml">
+            <arg name="robot_name" value="leader"/>
+        </include>
+
+        <include file="$(find alpha_swarm_bringup)/launch/include/localization.launch.xml">
+            <arg name="robot_name" value="leader"/>
+            <arg name="is_sim" value="true"/>
+        </include>
+
+        <!-- bring up the helm -->
+        <include file="$(find alpha_swarm_bringup)/launch/bringup_helm.launch">
+            <arg name="robot_name" value="leader"/>
+        </include>
+
+    </group>
+
+    <group>
+        <include file="$(find alpha_swarm_bringup)/launch/include/control.launch.xml">
+            <arg name="robot_name" value="follower"/>
+        </include>
+
+        <include file="$(find alpha_swarm_bringup)/launch/include/description.launch.xml">
+            <arg name="robot_name" value="follower"/>
+        </include>
+
+        <include file="$(find alpha_swarm_bringup)/launch/include/localization.launch.xml">
+            <arg name="robot_name" value="follower"/>
+            <arg name="is_sim" value="true"/>
+        </include>
+        
+        <!-- bring up the helm -->
+        <include file="$(find alpha_swarm_bringup)/launch/bringup_helm.launch">
+            <arg name="robot_name" value="follower"/>
+        </include>
+
+        <include file="$(find test)/launch/usbl.launch.xml">
+            <arg name="robot_name" value="follower"/>
+        </include>
+
+    </group>
+
+    <node
+      name="ned2world"
+      pkg="tf2_ros"
+      type="static_transform_publisher"
+      args="0.0 0.0 0.0 1.570796327 0.0 3.141592653589793 world world_ned "/>
+
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find alpha_swarm_description)/rviz/config_swarm.rviz"/>
+
+
+</launch>

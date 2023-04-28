@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(alpha_std_stonefish)
+project(alpha_swarm_stonefish)
 
 
 find_package(catkin REQUIRED COMPONENTS

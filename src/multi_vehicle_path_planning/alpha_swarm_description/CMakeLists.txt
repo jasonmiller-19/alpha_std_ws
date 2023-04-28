@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(alpha_std_description)
+project(alpha_swarm_description)
 
 find_package(catkin REQUIRED COMPONENTS
   tf2_ros
