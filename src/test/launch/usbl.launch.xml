@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+    This file is part of ALPHA AUV project.
+
+    Author: Emir Cem Gezer
+    Email: emircem@uri.edu;emircem.gezer@gmail.com
+    Year: 2022
+
+    Copyright (C) 2022 Smart Ocean Systems Laboratory
+-->
+<launch>
+    <arg name="robot_name" default="alpha_std"/>
+    <!-- set param for mvp_control -->
+    <node pkg="test" type="usbl_node" name="usbl" output="screen"> </node>
+
+</launch>
